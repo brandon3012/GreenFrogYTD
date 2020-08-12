@@ -2,6 +2,8 @@ package greenFrog;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -14,6 +16,7 @@ public class MainMenu extends Menu {
 	private JLabel welcomeMsg;
 	private JLabel frogLbl;
 	private LoadScreen loadScreen;
+	private HelpScreen helpScreen;
 	private ErrorMsg errorMsg;
 	
 	public MainMenu() {
@@ -29,7 +32,7 @@ public class MainMenu extends Menu {
 		
 		//opening message
 		welcomeMsg = new JLabel("Green Frog YTD");
-		welcomeMsg.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		welcomeMsg.setFont(new Font("Tempus Sans ITC", Font.BOLD, 21));
 		welcomeMsg.setBounds(25, 0, 225, 50);
 		panel.add(welcomeMsg);
 		
@@ -38,6 +41,13 @@ public class MainMenu extends Menu {
 		toVidBtn.setBounds(25, 60, 100, 25);
 		toVidBtn.setBackground(buttonColor);
 		toVidBtn.setForeground(btnTxtColor);
+		toVidBtn.setFont(btnFont);
+		toVidBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				openLoadMn(false);
+			}
+		});
 		panel.add(toVidBtn);
 		
 		//button to download a playlist
@@ -45,6 +55,13 @@ public class MainMenu extends Menu {
 		toPlstBtn.setBounds(25, 100, 100, 25);
 		toPlstBtn.setBackground(buttonColor);
 		toPlstBtn.setForeground(btnTxtColor);
+		toPlstBtn.setFont(btnFont);
+		toPlstBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				openLoadMn(true);
+			}
+		});
 		panel.add(toPlstBtn);
 	
 		//button to help menu
@@ -52,6 +69,13 @@ public class MainMenu extends Menu {
 		toHlpBtn.setBounds(25, 140, 100, 25);
 		toHlpBtn.setBackground(buttonColor);
 		toHlpBtn.setForeground(btnTxtColor);
+		toHlpBtn.setFont(btnFont);
+		toHlpBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				openHelp();
+			}
+		});
 		panel.add(toHlpBtn);
 		
 		//image of a frog, nice
@@ -65,8 +89,8 @@ public class MainMenu extends Menu {
 	 * OPEN LOAD MENU
 	 * opens menu and passes if it is a playlist or not
 	 */
-	private void openLoadMn(Boolean isItPlay) {
-		
+	private void openLoadMn(Boolean isPlaylist) {
+		loadScreen = new LoadScreen();
 	}
 	
 	/*
@@ -74,6 +98,6 @@ public class MainMenu extends Menu {
 	 * self explanatory
 	 */
 	private void openHelp() {
-		
+		helpScreen = new HelpScreen();
 	}
 }

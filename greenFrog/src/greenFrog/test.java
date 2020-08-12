@@ -9,6 +9,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
 
 public class test {
 
@@ -46,18 +48,8 @@ public class test {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(51, 0, 255));
+		panel.setBackground(Color.WHITE);
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblNewLabel.setBounds(0, 0, 302, 67); //88, 62, 302, 67
-		panel.add(lblNewLabel);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setBounds(20, 78, 89, 23);
-		panel.add(btnNewButton);
 	}
 }
