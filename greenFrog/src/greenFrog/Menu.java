@@ -12,6 +12,7 @@ public class Menu {
 	protected Boolean canResize;
 	protected ErrorMsg errorMsg;
 	protected Color buttonColor;
+	protected Color btnTxtColor;
 	private String title;
 	
 	public Menu() {
@@ -25,8 +26,10 @@ public class Menu {
 		panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		panel.setBackground(new Color(219, 181, 116));
-		buttonColor = new Color(126, 226, 111);
+		//panel.setBackground(new Color(219, 181, 116));
+		panel.setBackground(new Color(128, 98, 30));
+		buttonColor = new Color(0, 76, 0);
+		btnTxtColor = new Color(231, 89, 43);
 	}
 	
 	public void initialize() {

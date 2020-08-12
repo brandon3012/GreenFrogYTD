@@ -1,6 +1,7 @@
 package greenFrog;
 
 import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.*;
 
@@ -11,6 +12,7 @@ public class MainMenu extends Menu {
 	private JButton toPlstBtn;
 	private JButton toHlpBtn;
 	private JLabel welcomeMsg;
+	private JLabel frogLbl;
 	private LoadScreen loadScreen;
 	private ErrorMsg errorMsg;
 	
@@ -23,7 +25,7 @@ public class MainMenu extends Menu {
 	 */
 	public void initialize() {
 		//the frame
-		frame.setBounds(100, 100, 450, 225);
+		frame.setBounds(100, 100, 450, 235);
 		
 		//opening message
 		welcomeMsg = new JLabel("Green Frog YTD");
@@ -35,17 +37,28 @@ public class MainMenu extends Menu {
 		toVidBtn = new JButton("Video");
 		toVidBtn.setBounds(25, 60, 100, 25);
 		toVidBtn.setBackground(buttonColor);
+		toVidBtn.setForeground(btnTxtColor);
 		panel.add(toVidBtn);
 		
 		//button to download a playlist
 		toPlstBtn = new JButton("Playlist");
 		toPlstBtn.setBounds(25, 100, 100, 25);
+		toPlstBtn.setBackground(buttonColor);
+		toPlstBtn.setForeground(btnTxtColor);
 		panel.add(toPlstBtn);
-		
+	
 		//button to help menu
 		toHlpBtn = new JButton("Help");
 		toHlpBtn.setBounds(25, 140, 100, 25);
+		toHlpBtn.setBackground(buttonColor);
+		toHlpBtn.setForeground(btnTxtColor);
 		panel.add(toHlpBtn);
+		
+		//image of a frog, nice
+		frogLbl = new JLabel();
+		frogLbl.setIcon(new ImageIcon("frogPic.png"));
+		frogLbl.setBounds(250, 10, 160, 175);
+		panel.add(frogLbl);
 	}
 	
 	/*

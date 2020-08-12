@@ -56,6 +56,7 @@ public class test {
 		panel.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBounds(20, 78, 89, 23);
 		panel.add(btnNewButton);
 	}
