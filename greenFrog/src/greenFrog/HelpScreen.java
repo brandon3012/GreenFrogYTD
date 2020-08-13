@@ -18,7 +18,7 @@ public class HelpScreen extends Menu {
 	}
 	
 	public void initialize() {
-		frame.setBounds(100, 100, 500, 475);
+		frame.setBounds(100, 100, 500, 350);
 		
 		instructions = "Welcome! This program may or may not be run by an army of assorted frogs\n\n"
 				+ "    IMPORTANT: You need to download toutube-dl or our friendly frogs won't know where to go."
@@ -33,14 +33,14 @@ public class HelpScreen extends Menu {
 				+ "That's all I can think of at the moment...";
 		
 		instrArea = new JTextArea(instructions);
-		instrArea.setBounds(10, 10, 465, 300);
+		instrArea.setBounds(10, 10, 465, 250);
 		instrArea.setLineWrap(true);
-		instrArea.setBackground(brown);
+		instrArea.setBackground(blue);
 		panel.add(instrArea);
 		
 		//back button
 		goBackBtn = new JButton("Go Back");
-		goBackBtn.setBounds(10, 340, 100, 25);
+		goBackBtn.setBounds(10, 270, 100, 25);
 		goBackBtn.setBackground(buttonColor);
 		goBackBtn.setForeground(btnTxtColor);
 		goBackBtn.setFont(btnFont);

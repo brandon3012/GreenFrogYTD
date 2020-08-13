@@ -15,6 +15,9 @@ public class Menu {
 	protected Color buttonColor;
 	protected Color btnTxtColor;
 	protected Font btnFont;
+	protected int bHeight; //height of a button
+	protected int bWidth;
+	
 	private String title;
 	
 	
@@ -54,6 +57,8 @@ public class Menu {
 		buttonColor = darkGreen;
 		btnTxtColor = orange;
 		btnFont = new Font("Segoe UI Light", Font.BOLD, 15);
+		bHeight = 25;
+		bWidth = 100;
 	}
 	
 	public void initialize() {
