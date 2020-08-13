@@ -1,3 +1,9 @@
+/*************************************************
+ * MAIN MENU
+ * you can download a playlist, a video, or go to
+ * the help menu
+ ************************************************/
+
 package greenFrog;
 
 import java.awt.Font;

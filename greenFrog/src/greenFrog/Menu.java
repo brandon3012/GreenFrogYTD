@@ -1,3 +1,7 @@
+/************************************************
+ * MENU
+ * every windows extends this class
+ * **********************************************/
 package greenFrog;
 
 import java.awt.BorderLayout;
@@ -21,7 +25,7 @@ public class Menu {
 	private String title;
 	
 	
-	private Color lightGreen;
+	protected Color lightGreen;
 	private Color darkGreen;
 	private Color orange;
 	private Color red;
