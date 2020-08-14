@@ -10,6 +10,7 @@ package greenFrog;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class ErrorMsg extends Menu {
@@ -42,6 +43,7 @@ public class ErrorMsg extends Menu {
 		errorLabel = new JLabel(errorMessage);
 		errorLabel.setBounds(10, 11, 440, 40);
 		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		panel.add(errorLabel);
 	}	
 }

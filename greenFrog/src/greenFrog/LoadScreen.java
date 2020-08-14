@@ -1,5 +1,9 @@
 package greenFrog;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -9,20 +13,25 @@ import javax.swing.JRadioButton;
 
 public class LoadScreen extends Menu {
 	
+	//consts
+	final String MP3 = "mp3";
+	final String MP4 = "mp4";
+	
+	//url vars
 	JLabel urlLab;
 	String url;
 	JFormattedTextField urlField;
 	
+	//path to youtube-dl
 	JLabel ytdlLab;
 	String ytdlPath;
 	JFormattedTextField ytdlField;
 	
-	String fileType;
-	JButton download;
-	JButton goBack;
+	String fileType; //mp4, mp3 etc..
 
 	JFormattedTextField pathField; //path to youtube-dl
 	
+	//radio buttonf for filetype
 	ButtonGroup fileTypes;
 	JRadioButton mp4Btn;
 	JRadioButton mp3Btn;
@@ -30,19 +39,32 @@ public class LoadScreen extends Menu {
 	JButton downloadBtn;
 	JButton goBackBtn;
 	
+	Boolean audioOnly; //is mp3 or other
+	
+	//a picture of a frog, nice
 	JLabel frogLbl;
+	
+	DlCmd dlCmd; //download command
+	Boolean isPlaylist;
 	
 	int winX;
 	int winY;
 	
 	public LoadScreen() {
+		this.isPlaylist = false;
 		winX = 400;
 		winY = 300;
 		ytdlPath = "youtube-dl";
 		frame.setBounds(100, 100, winX, winY);
-		
-		//urlLab = new JLabel("YouTube URL:");
-		
+		initialize();
+	}
+	
+	public LoadScreen(Boolean isPlaylist) {
+		this.isPlaylist = isPlaylist;
+		winX = 400;
+		winY = 300;
+		ytdlPath = "youtube-dl";
+		frame.setBounds(100, 100, winX, winY);
 		initialize();
 	}
 	
@@ -117,16 +139,42 @@ public class LoadScreen extends Menu {
 		downloadBtn = new JButton("Download!");
 		goBackBtn = new JButton("Go Back");
 		
+		//download button
 		downloadBtn.setBounds(x, y, bWidth, bHeight);
 		downloadBtn.setBackground(buttonColor);
 		downloadBtn.setForeground(btnTxtColor);
 		downloadBtn.setFont(btnFont);
+		downloadBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				url = new String(urlField.getText());
+				ytdlPath = new String(ytdlField.getText());
+				fileType = new String(getFileType());
+				
+				
+				dlCmd = new DlCmd();
+				try {
+					dlCmd.download(url, ytdlPath, fileType, isPlaylist, audioOnly);
+				} catch (IOException | InterruptedException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+		});
 		panel.add(downloadBtn);
 		
+		//go back button
 		goBackBtn.setBounds(x + bWidth + 10, y, bWidth, bHeight);
 		goBackBtn.setBackground(buttonColor);
 		goBackBtn.setForeground(btnTxtColor);
 		goBackBtn.setFont(btnFont);
+		goBackBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				MainMenu mainMenu = new MainMenu();
+			}
+		});
 		panel.add(goBackBtn);
 	}
 	
@@ -136,6 +184,22 @@ public class LoadScreen extends Menu {
 		frogLbl.setIcon(new ImageIcon("frogPic.png"));
 		frogLbl.setBounds(x, y, 160, 175);
 		panel.add(frogLbl);
+	}
+	
+	private String getFileType() {
+		String output = new String();
+		
+		if(mp4Btn.isSelected()) {
+			output = MP4;
+			audioOnly = false;
+		}
+		
+		else if (mp3Btn.isSelected()) {
+			output = MP3;
+			audioOnly = true;
+		}
+		
+		return output;
 	}
 	
 }

@@ -24,6 +24,7 @@ public class MainMenu extends Menu {
 	private LoadScreen loadScreen;
 	private HelpScreen helpScreen;
 	private ErrorMsg errorMsg;
+	private Boolean isPlaylist;
 	
 	public MainMenu() {
 		initialize();
@@ -51,7 +52,8 @@ public class MainMenu extends Menu {
 		toVidBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				openLoadMn(false);
+				isPlaylist = false;
+				openLoadMn(isPlaylist);
 			}
 		});
 		panel.add(toVidBtn);
@@ -65,7 +67,8 @@ public class MainMenu extends Menu {
 		toPlstBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				openLoadMn(true);
+				isPlaylist = true;
+				openLoadMn(isPlaylist);
 			}
 		});
 		panel.add(toPlstBtn);

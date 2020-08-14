@@ -11,8 +11,6 @@ public class DlCmd {
 	final String EXTRACTAUDIO = "-x";
 	final String AUDIOFORMAT = "--audio-format";
 	final String RECODEVID = "--recode-video";
-	final String MP3 = "mp3";
-	final String MP4 = "mp4";
 	final String BESTAUDIO = "best";
 	final String RICKROLL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 	
@@ -39,9 +37,14 @@ public class DlCmd {
 		command = new ArrayList<String>();
 	}
 	
+	public DlCmd(String url, String path, String fileType,
+			Boolean isPlaylist, Boolean audioOnly) {
+		
+	}
+	
 	//called from the loading meny
-	public void download(String url, String path, String audioTyp,
-			String vidTyp, Boolean isPlaylist, Boolean audioOnly) throws IOException, InterruptedException {
+	public void download(String url, String path, String fileType,
+			Boolean isPlaylist, Boolean audioOnly) throws IOException, InterruptedException {
 		/*
 		this.url = url;
 		this.path = path;
@@ -50,14 +53,14 @@ public class DlCmd {
 		this.isPlaylist = isPlaylist;
 		*/
 		
-		command = makeCommand(url, path, audioTyp, vidTyp, 
+		command = makeCommand(url, path, fileType, 
 				isPlaylist, audioOnly);
 		runCommand(command);
 	}
 	
 	//puts together a command to send to youtube-dl
-	private ArrayList<String> makeCommand(String url, String path, String audioTyp,
-			String vidTyp, Boolean isPlaylist, Boolean audioOnly) {
+	private ArrayList<String> makeCommand(String url, String path, String fileType,
+			Boolean isPlaylist, Boolean audioOnly) {
 		
 		ArrayList<String>output = new ArrayList<String>();
 		
@@ -65,12 +68,12 @@ public class DlCmd {
 		if(audioOnly) {
 			output.add(EXTRACTAUDIO);
 			output.add(AUDIOFORMAT);
-			output.add(audioTyp);
+			output.add(fileType);
 		}
 		
 		else {
-			output.add(RECODEVID);
-			output.add(vidTyp);
+			//output.add(RECODEVID);
+			//output.add(fileType);
 		}
 		
 		output.add(url);
@@ -82,5 +85,10 @@ public class DlCmd {
 		ProcessBuilder processBuilder = new ProcessBuilder(toExecute);
 		Process process = processBuilder.inheritIO().start();
 		process.waitFor();
+		
+		if(process.exitValue() != 0) {
+			ErrorMsg error = new ErrorMsg("Error Downloading Video");
+		}
+		
 	}
 }
