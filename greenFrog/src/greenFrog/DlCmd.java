@@ -4,6 +4,8 @@ import java.awt.List;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.SwingWorker;
+
 public class DlCmd {
 	//final String PLAYLIST = "-cit";
 	final String PLAYLIST = "--yes-playlist";
@@ -24,6 +26,7 @@ public class DlCmd {
 	*/
 	
 	private ArrayList<String> command;
+	private Boolean isFinished;
 	
 	public DlCmd() {
 		/*
@@ -76,19 +79,35 @@ public class DlCmd {
 			//output.add(fileType);
 		}
 		
+		if(!isPlaylist) {
+			output.add(NOPLAYLIST);
+		}
+		
 		output.add(url);
 		return output;
 	}
 	
 	//runs a command
 	private void runCommand(ArrayList<String> toExecute) throws IOException, InterruptedException {
-		ProcessBuilder processBuilder = new ProcessBuilder(toExecute);
-		Process process = processBuilder.inheritIO().start();
-		process.waitFor();
-		
-		if(process.exitValue() != 0) {
-			ErrorMsg error = new ErrorMsg("Error Downloading Video");
-		}
-		
+		SwingWorker<Void, String> worker = new SwingWorker<Void, String> () {
+
+			@Override
+			protected Void doInBackground() throws Exception {
+				isFinished = false;
+				ProcessBuilder processBuilder = new ProcessBuilder(toExecute);
+				Process process = processBuilder.inheritIO().start();
+				process.waitFor();
+				if(process.exitValue() != 0) {
+					ErrorMsg error = new ErrorMsg("Error Downloading Video");
+				}
+				isFinished = true;				
+				return null;
+			}			
+		};
+		worker.execute();
+	}
+	
+	public Boolean getIsFinished() {
+		return isFinished;
 	}
 }

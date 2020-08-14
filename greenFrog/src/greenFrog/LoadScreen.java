@@ -47,6 +47,8 @@ public class LoadScreen extends Menu {
 	DlCmd dlCmd; //download command
 	Boolean isPlaylist;
 	
+	JLabel test = new JLabel("Test");
+	
 	int winX;
 	int winY;
 	
@@ -74,6 +76,8 @@ public class LoadScreen extends Menu {
 		addFrog(210, 75);
 		addPath(10, 120);
 		addButtons(10, 180);
+		test.setBounds(10, 200, 100, 20);
+		//panel.add(test);
 	}
 	
 	//x and y are coords of upper left corner of
@@ -131,7 +135,7 @@ public class LoadScreen extends Menu {
 		
 		fileTypes = new ButtonGroup();
 		fileTypes.add(mp4Btn);
-		fileTypes.add(mp3Btn);
+		fileTypes.add(mp3Btn);		
 	}
 	
 	//add the buttons
@@ -156,6 +160,9 @@ public class LoadScreen extends Menu {
 				dlCmd = new DlCmd();
 				try {
 					dlCmd.download(url, ytdlPath, fileType, isPlaylist, audioOnly);
+					
+					panel.add(test);
+					
 				} catch (IOException | InterruptedException e1) {
 					e1.printStackTrace();
 				}
