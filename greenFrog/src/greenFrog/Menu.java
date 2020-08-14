@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -33,6 +34,8 @@ public class Menu {
 	private Color darkOrange;
 	protected Color brown;
 	
+	private ImageIcon icon;
+	
 	public Menu() {
 		
 		//some colors
@@ -49,6 +52,8 @@ public class Menu {
 		frame = new JFrame(title);
 		//frame.setResizable(false);
 		frame.setVisible(true);
+		icon = new ImageIcon("frogPic.png");
+		frame.setIconImage(icon.getImage());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//the panel
 		panel = new JPanel();
